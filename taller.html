@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infografía Interactiva</title>
+  <link rel="stylesheet" href="taller.css">
+</head>
+<body>
+
+  <!-- Sección Hero / Portada -->
+  <header class="hero-section grid-container full-screen-section">
+   <div class="hero-image-wrapper">
+    <img src="media/portada.png" alt="Portada pixel art" class="hero-img">
+   </div>
+
+   <div class="hero-title-container">
+    <div class="hero-title-box">
+      <h1 class="hero-title">Creatividad en<br>piloto automático</h1>
+      <p class="hero-subtitle">¿Por qué los usuarios rechazan el uso de la IA en publicidad?</p>
+    </div>
+   </div>
+  </header>
+
+<!-- Sección 1: Gráfico de Barras Interactivo -->
+  <section class="chart-section full-screen-section theme-light source-container-parent">
+    
+    <!-- Título principal respetando el margen izquierdo exacto de 128px -->
+    <div class="chart-header-container">
+      <h2 id="section1-main-title" class="section-title">
+        ¿Con qué velocidad está creciendo el uso de la IA<br>
+        en publicidad?
+      </h2>
+      <!-- Subtítulo centrado: verde intenso con contorno negro -->
+      <h3 class="interactive-subtitle-outline"><strong>Seleccione el gráfico correcto</strong></h3>
+      <!-- NUEVO: Texto que aparece al resolver -->
+      <p id="correctAnswerSubtitle" class="correct-answer-subtitle">La respuesta correcta es:</p>
+    </div>
+
+    <!-- Contenedor Principal de Barras Interactivas -->
+    <div class="chart-interactive-wrapper-v2">
+      <div class="chart-interactive-inner">
+        
+        <!-- Reemplaza el botón prevChartStateBtn por este: -->
+      <button id="prevChartStateBtn" class="chart-nav-arrow-btn chart-prev-arrow-btn" aria-label="Gráfico anterior" style="visibility: hidden; display: flex;">
+        &#9664;
+      </button>
+
+        <div class="chart-bars-container" id="cardsCarouselContainer">
+          <!-- NUEVO: Texto flotante de la izquierda -->
+          <div id="revealText" class="reveal-text">
+            En los últimos<br>años el uso de IA<br>creció un<br>
+            <span class="neon-green">278%</span>
+          </div>
+          <!-- Estado inicial: 87, 76, 51, 42, 23 -->
+          <div class="bar-item" data-percentage="87">
+            <span class="bar-percentage">87%</span>
+            <div class="bar-box rounded-bar" style="height: 260px;"></div>
+            <div class="bar-baseline"></div>
+          </div>
+          <div class="bar-item" data-percentage="76">
+            <span class="bar-percentage">76%</span>
+            <div class="bar-box rounded-bar" style="height: 220px;"></div>
+            <div class="bar-baseline"></div>
+          </div>
+          <div class="bar-item" data-percentage="51">
+            <span class="bar-percentage">51%</span>
+            <div class="bar-box rounded-bar" style="height: 160px;"></div>
+            <div class="bar-baseline"></div>
+          </div>
+          <div class="bar-item" data-percentage="42">
+            <span class="bar-percentage">42%</span>
+            <div class="bar-box rounded-bar" style="height: 130px;"></div>
+            <div class="bar-baseline"></div>
+          </div>
+          <div class="bar-item" data-percentage="23">
+            <span class="bar-percentage">23%</span>
+            <div class="bar-box rounded-bar" style="height: 80px;"></div>
+            <div class="bar-baseline"></div>
+          </div>
+        </div>
+
+        <!-- Botón de flecha derecha (negra, más cerca de las barras) -->
+        <button id="nextChartStateBtn" class="chart-nav-arrow-btn chart-next-arrow-btn" aria-label="Siguiente gráfico">
+          &#9654;
+        </button>
+
+      </div>
+
+      <!-- Texto inferior -->
+      <div class="chart-bottom-label">
+        <p>Crecimiento del uso de la IA en publicidad</p>
+        <p>2022-2026</p>
+      </div>
+    </div>
+
+    <!-- FUENTE fija -->
+    <div class="fixed-source-display">
+      <a href="https://www.emarketer.com" target="_blank" rel="noopener noreferrer" class="source-link">FUENTE</a>
+    </div>
+  </section>
+
+ <!-- Sección 2: Radar Interactiva (Fondo Blanco) -->
+  <section class="radar-section grid-container full-screen-section theme-light source-container-parent">
+    
+    <!-- Título original fijo -->
+    <div class="radar-text">
+      <h2 id="radar-title" class="section-title">
+        <strong>¿En qué usan la IA<br>los profesionales?<strong>
+      </h2>
+    </div>
+
+    <!-- Contenedor del gráfico con el recuadro negro flotante condicionado al hover -->
+    <div class="radar-chart-container" id="radar-hover-zone">
+      
+      <!-- Recuadro negro flotante superior (oculto por defecto, aparece con is-active) -->
+      <div class="radar-top-textbox">
+        <h3 class="radar-top-title">
+          El <span class="neon-green-text">50%</span> de los profesionales en marketing<br>
+          utilizan IA para la generación de imágenes o video
+        </h3>
+      </div>
+
+      <svg viewBox="0 0 760 560" class="radar-svg">
+        <polygon points="380,100 508,162 542,303 452,415 308,415 218,303 252,162" class="radar-grid-line" />
+        <polygon points="380,140 473,185 498,288 433,370 262,288 287,185" class="radar-grid-line" />
+        <polygon points="380,180 438,208 454,273 414,325 346,325 306,273 322,208" class="radar-grid-line" />
+        <polygon points="380,220 403,231 409,258 394,280 366,280 351,258 357,231" class="radar-grid-line" />
+
+        <line x1="380" y1="250" x2="380" y2="100" class="radar-axis" />
+        <line x1="380" y1="250" x2="508" y2="162" class="radar-axis" />
+        <line x1="380" y1="250" x2="542" y2="303" class="radar-axis" />
+        <line x1="380" y1="250" x2="452" y2="415" class="radar-axis" />
+        <line x1="380" y1="250" x2="308" y2="415" class="radar-axis" />
+        <line x1="380" y1="250" x2="218" y2="303" class="radar-axis" />
+        <line x1="380" y1="250" x2="252" y2="162" class="radar-axis" />
+
+        <polygon points="380,144 482,180 511,293 435,380 327,371 254,290 280,183" class="radar-data-area" />
+
+        <!-- Títulos normales agrupados que se ocultan al pasar el mouse -->
+        <g class="radar-default-labels">
+          <text x="380" y="60" text-anchor="middle" class="radar-label">generación de texto</text>
+          <text x="545" y="130" text-anchor="start" class="radar-label">refinamiento de texto</text>
+          <text x="300" y="445" text-anchor="end" class="radar-label">contenido personalizado</text>
+          <text x="185" y="310" text-anchor="end" class="radar-label">contenido visual</text>
+          <text x="215" y="130" text-anchor="end" class="radar-label">investigación</text>
+        </g>
+        
+        <!-- Elementos verdes que se mantienen y resaltan -->
+        <g class="radar-label-group highlight-target">
+          <rect class="label-bg-highlight" x="550" y="288" width="255" height="28" rx="4" ry="4" />
+          <text x="565" y="310" text-anchor="start" class="radar-label is-green">generación de imágenes</text>
+        </g>
+        
+        <g class="radar-label-group highlight-target">
+          <rect class="label-bg-highlight" x="420" y="423" width="205" height="28" rx="4" ry="4" />
+          <text x="435" y="445" text-anchor="start" class="radar-label is-green">creación de video</text>
+        </g>
+
+        <!-- Insignias de porcentajes -->
+        <g class="radar-badges">
+          <g>
+            <rect class="badge-bg" x="486" y="280" width="50" height="26" rx="4" ry="4" style="fill: #000000; stroke: #000000;" />
+            <text x="511" y="293" class="badge-text is-green-text">49%</text>
+          </g>
+
+          <g>
+            <rect class="badge-bg" x="410" y="367" width="50" height="26" rx="4" ry="4" style="fill: #000000; stroke: #000000;" />
+            <text x="435" y="380" class="badge-text is-green-text">49%</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="pixel-divider">
+      <div class="sq sq-black sq-l1"></div>
+      <div class="sq sq-black sq-l2"></div>
+      <div class="sq sq-white sq-lw1"></div>
+      <div class="sq sq-black sq-r1"></div>
+      <div class="sq sq-black sq-r2"></div>
+      <div class="sq sq-black sq-r3"></div>
+      <div class="sq sq-white sq-rw1"></div>
+      <div class="sq sq-white sq-rw2"></div>
+    </div>
+
+    <div class="fixed-source-display">
+     <a href="https://www.emarketer.com/content/almost-majority-of-marketers-use-ai-create-images-videos" target="_blank" rel="noopener noreferrer" class="source-link">FUENTE</a>
+    </div>
+  </section>
+
+
+<!-- Sección 3: Crecimiento del impacto negativo -->
+<section class="negative-impact-section grid-container full-screen-section theme-dark source-container-parent">
+  
+  <!-- Título de la sección -->
+  <div class="impact-title-container">
+    <h2 class="section-title">
+      Crecimiento del impacto<br>
+      <span class="text-green-highlight">negativo</span> sobre el uso<br>
+      de la IA
+    </h2>
+  </div>
+
+  <!-- Párrafo descriptivo a la izquierda -->
+  <div class="impact-description-container" id="section3-description">
+    <p class="impact-description">
+      Los anunciantes están<br>
+      aumentando<br>
+      rápidamente el uso de<br>
+      la IA en la creación<br>
+      de anuncios, pero las<br>
+      actitudes de los<br>
+      consumidores se han<br>
+      vuelto más negativas.<br>
+      La brecha entre la<br>
+      percepción del<br>
+      anunciante y la<br>
+      opinión del<br>
+      consumidor sigue<br>
+      ampliándose.
+    </p>
+  </div>
+
+  <!-- Gráfico desplazado con la pregunta -->
+  <div class="impact-chart-wrapper">
+    <div class="chart-relative-box">
+      <!-- Imagen principal -->
+      <img src="media/grafico1.png" alt="Gráfico de impacto" class="rings-bg-image" id="section3-image" />
+      
+      
+      <!-- Signo de pregunta titilante -->
+      <span class="neon-question-mark" id="section3-question" style="pointer-events: auto; cursor: pointer;">?</span>
+
+      <!-- FLECHA PARA REINICIAR (Aparecerá junto a 2025-2026) -->
+      <button id="section3-reset-btn" class="reset-arrow-btn" style="display: none;" title="Volver a intentar">
+        &#9664;
+      </button>
+
+      <!-- FLECHA DERECHA (Para pasar a grafico4.png) -->
+      <button id="section3-next-btn" class="next-arrow-btn" style="display: none;" title="Ver siguiente gráfico">
+        &#9654;
+      </button>
+      
+      <!-- FLECHA DERECHA (Visible desde el Gráfico 1 para pasar a grafico4.png) -->
+      <button id="section3-next-btn" class="next-arrow-btn" style="display: flex;" title="Ver siguiente gráfico">
+        &#9654;
+      </button>
+
+    <!-- BOTÓN DE REINICIO CON IMAGEN DE ROTONDA PIXELADA -->
+      <button id="section3-global-reset-btn" class="global-reset-btn" style="display: none;" title="Reiniciar infografía">
+        <img src="media/reinicio.png" alt="Reiniciar" class="reset-icon-img" />
+      </button>
+
+      <!-- RECUADRO NEGRO INFERIOR (Contiene el texto y los porcentajes) -->
+      <div id="section3-bottom-box" class="section3-bottom-box" style="display: none;">
+        <p id="section3-extra-text" class="section3-extra-text" style="display: none;">
+          En los últimos 2 años, ¿a cuánto creés<br>que aumentó el rechazo de los clientes?
+        </p>
+
+        <div id="percentage-options" class="percentage-options-container">
+          <span class="pct-btn" data-correct="false">20%</span>
+          <span class="pct-btn" data-correct="true">30%</span>
+          <span class="pct-btn" data-correct="false">50%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+  <!-- FUENTE -->
+  <div class="fixed-source-display">
+    <a href="https://www.iab.com/insights/the-ai-gap-widens/" target="_blank" rel="noopener noreferrer" class="source-link">FUENTE</a>
+  </div>
+
+</section>
+
+</section>
+
+ <!-- Sección 4: Campañas criticadas -->
+  <section class="campaigns-section grid-container full-screen-section theme-dark source-container-parent">
+    <div class="campaigns-title-container">
+      <h2 class="section-title">
+        Campañas criticadas por<br>el uso de IA
+      </h2>
+    </div>
+
+    <div class="campaigns-cards-wrapper">
+      <div class="campaign-card" data-card="1">
+        <div class="card-img-box" role="button" tabindex="0" aria-label="Ver descripción de Coca-Cola">
+          <img src="media/img1.png" alt="Coca-Cola" class="card-img">
+        </div>
+        <div class="card-title-box">
+          <a href="https://www.youtube.com/watch?v=Yy6fByUmPuE" target="_blank" rel="noopener noreferrer" class="card-link">
+            Coca-Cola<br>(Navidad 2025)
+          </a>
+        </div>
+        <div class="hidden-desc" style="display:none;">La marca reeditó su clásico aviso de camiones navideños usando IA generativa al 100%. El público reaccionó con fuerte rechazo, acusando a la empresa de recortar puestos de trabajo creativos y entregar una pieza fría, artificial y carente del calor humano tradicional de sus campañas.</div>
+      </div>
+
+      <div class="campaign-card" data-card="2">
+        <div class="card-img-box" role="button" tabindex="0" aria-label="Ver descripción de KitKat">
+          <img src="media/img2.png" alt="KitKat" class="card-img">
+        </div>
+        <div class="card-title-box">
+          <a href="https://www.youtube.com/watch?v=LsPoNd1X0NU&t=1s" target="_blank" rel="noopener noreferrer" class="card-link">
+            KitKat (Australia y<br>Nueva Zelanda, 2024)
+          </a>
+        </div>
+        <div class="hidden-desc" style="display:none;">Bajo el lema de "darse un respiro", la marca recurrió deliberadamente a la IA para producir su spot como una parodia. El resultado exhibió errores grotescos propios del software —rostros deformados, dedos extra y logos adulterados— para ironizar sobre la incapacidad de la tecnología de igualar el talento creativo humano.</div>
+      </div>
+
+      <div class="campaign-card" data-card="3">
+        <div class="card-img-box" role="button" tabindex="0" aria-label="Ver descripción de McDonald's">
+          <img src="media/img3.png" alt="McDonald's" class="card-img">
+        </div>
+        <div class="card-title-box">
+          <a href="https://www.youtube.com/watch?v=E-YwjXEVGo8" target="_blank" rel="noopener noreferrer" class="card-link">
+            McDonald's (Navidad<br>2024-2025)
+          </a>
+        </div>
+        <div class="hidden-desc" style="display:none;">McDonald’s Países Bajos lanzó una campaña navideña caótica generada enteramente por IA, pero debió retirarla a los pocos días. La audiencia la calificó de "deprimente" y visualmente perturbadora, reabriendo el debate sobre el impacto negativo de sustituir a los equipos de filmación humana por contenido sintético.</div>
+      </div>
+
+      <div class="campaign-card" data-card="4">
+        <div class="card-img-box" role="button" tabindex="0" aria-label="Ver descripción de BetWarrior">
+          <img src="media/img4.png" alt="BetWarrior" class="card-img">
+        </div>
+        <div class="card-title-box">
+          <a href="https://www.youtube.com/watch?v=yv0NYRq2afI" target="_blank" rel="noopener noreferrer" class="card-link">
+            BetWarrior<br>(2026)
+          </a>
+        </div>
+        <div class="hidden-desc" style="display:none;">La plataforma de apuestas causó repudio generalizado al emitir durante los entretiempos y pausas del Mundial 2026 una recreación de Diego Maradona con IA y clonación de voz. Fanáticos y especialistas criticaron la falta de ética al utilizar la figura del ídolo fallecido para incitar a las apuestas.</div>
+      </div>
+    </div>
+
+    <!-- Modal flotante con la estructura original para albergar el video o contenido -->
+    <div class="campaign-modal-overlay" id="campaignModal">
+      <div class="campaign-modal-box">
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar modal">X</button>
+        <div class="modal-content-grid">
+          <div class="modal-img-container" id="modalVideoContainer">
+            <!-- Aquí se inyectará dinámicamente el reproductor de YouTube adaptado al espacio -->
+          </div>
+          <div class="modal-text-container">
+            <h3 class="modal-title" id="modalTitle">Título de la campaña</h3>
+            <p class="modal-desc" id="modalDesc">Descripción detallada de la campaña.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sección 5: Beneficio de las Empresas -->
+  <section class="business-benefit-section grid-container full-screen-section theme-dark">
+    <div class="benefit-title-container">
+      <h2 class="section-title wide-title">
+        <span class="first-line">¿Y QUÉ BENEFICIO SACAN LAS</span>
+        <span class="second-line">EMPRESAS DE USAR LA IA?</span>
+      </h2>
+      <p class="benefit-paragraph">
+        Frente a los 26.000 millones que ingresa McDonald’s al año y los 4.000 millones que gasta en publicidad, el ahorro obtenido con IA representa apenas el <span class="highlight-green">0,38% de sus ingresos anuales</span> demostrando un impacto financiero sumamente marginal respecto al volumen total del negocio.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sección 6: Datos de McDonald's -->
+  <section class="mcdonalds-data-section grid-container full-screen-section theme-dark">
+    <div class="pixel-curtain-divider">
+      <div class="sq sq-black sq-c1"></div>
+      <div class="sq sq-black sq-c2"></div>
+      <div class="sq sq-black sq-c3"></div>
+      <div class="sq sq-black sq-c4"></div>
+      <div class="sq sq-black sq-c5"></div>
+    </div>
+
+    <div class="mcdonalds-content">
+      <ul class="data-list">
+        <li>Si extendiéramos cada billete sobre el suelo, el</li>
+        <li>ingreso anual de McDonald's cubriría 2,7km²</li>
+        <li>mientras que su ahorro con IA apenas ocuparía el 0,01km²</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sección 7: Comparación -->
+  <section class="comparison-section grid-container full-screen-section theme-dark">
+    <div class="comparison-text-container">
+      <h2 class="section-title text-small">
+        En el mapa de la ciudad de La Plata, esa diferencia se ve así:
+      </h2>
+    </div>
+
+    <div class="comparison-image-wrapper">
+      <img src="media/comparacion.png" alt="Comparación avión y auto" class="comparison-img">
+    </div>
+  </section>
+
+  <!-- Sección Final: Un límite a la automatización -->
+  <section class="limit-section full-screen-section theme-dark">
+    <div class="limit-content">
+      <h2 class="limit-title">
+        Un <span class="neon-green-text">límite</span> a la<br>automatización
+      </h2>
+    </div>
+  </section>
+
+  <!-- Sección Definitiva: Conclusión / Cierre -->
+  <section class="conclusion-section full-screen-section theme-dark">
+    <div class="conclusion-content">
+      <p class="conclusion-text">
+        A medida que el público penaliza la falta de alma en los mensajes, el recorte de costos que ofrece la IA termina pagándose con el <span class="neon-green-text">descrédito</span> de los consumidores. Si el <span class="neon-green-text">rechazo</span> de los usuarios no se detiene, ¿seguiremos viendo cómo la industria publicitaria insiste en un camino que <span class="neon-green-text">aleja a sus propios clientes?</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-bg">
+      <a href="https://www.instagram.com/creatividad.automatica/?hl=es-la" target="_blank" rel="noopener noreferrer" class="footer-instagram-link">
+        <img src="media/instagram.png" alt="Instagram logo" class="footer-ig-icon">
+        <span class="footer-ig-text">Instagram</span>
+      </a>
+      <img src="media/footer.png" alt="Footer pixelado" class="footer-img">
+    </div>
+  </footer>
+
+  <script src="taller.js"></script>
+</body>
+</html>

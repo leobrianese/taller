@@ -1,0 +1,1407 @@
+@font-face {
+  font-family: 'Ticketing';
+  src: url('media/Ticketing.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Ticketing';
+  src: url("https://db.onlinewebfonts.com/t/e0808c298b8a58729c0921020fa398f8.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --grid-columns: 12;
+  --grid-margin: 128px;
+  --grid-gutter: 24px;
+  --main-font: 'Ticketing', monospace;
+  --accent-green: #00fc0d;
+  --accent-lila: #c8a2c8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--main-font);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--grid-gutter);
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.full-screen-section {
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.theme-light { background-color: #ffffff; color: #000000; }
+.theme-dark { background-color: #000000; color: #ffffff; }
+
+/* Hero / Portada */
+.hero-section {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 1;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.hero-title-container {
+  grid-column: 1 / span 9; /* Ocupa el ancho necesario para posicionarse igual que en Figma */
+  z-index: 2;
+  position: relative;
+  margin-top: -40px; /* Sube ligeramente el bloque si necesitas ajustarlo en vertical */
+}
+
+.hero-title-box {
+  background-color: #ffffff;
+  padding: 50px 37px; /* Margen interno amplio para que respire igual que en tu diseño */
+  display: inline-block;
+  box-shadow: none; 
+}
+
+.hero-title {
+  font-size: 4.0rem;
+  letter-spacing: 0.05em;
+  line-height: 0.95;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+.hero-subtitle {
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+  color: #000000;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  max-width: 650px;
+}
+
+.hero-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Contenedor fuente fija abajo a la derecha */
+.source-container-parent {
+  position: relative;
+}
+
+.fixed-source-display {
+  position: absolute;
+  bottom: 0;
+  right: calc(120px + 20px);
+  z-index: 10;
+}
+
+.theme-light .source-link { color: #000000; }
+.theme-dark .source-link { color: #ffffff; }
+
+.source-link {
+  font-family: var(--main-font);
+  font-size: 2.2rem;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.source-link:hover { color: var(--accent-green); }
+
+/* ===================================================
+   SECCIÓN 1: AJUSTES FINALES (Separación de barras y flechas negras cercanas)
+   =================================================== */
+
+.chart-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Evita que el título se pegue arriba */
+  
+  padding-top: 30px; /* Tu separación intocable */
+  padding-bottom: 100px; /* AUMENTADO: Le damos más espacio abajo para que el texto final respire */
+  
+  /* ACÁ ESTÁ LA MAGIA PARA AGRANDAR LA SECCIÓN: */
+  min-height: 100vh; /* Ocupa al menos la pantalla completa... */
+  height: auto; /* ...pero si necesita más espacio, crece infinitamente hacia abajo */
+  
+  max-height: none; /* ¡NUEVO! Esta es la clave para anular el límite restrictivo de .full-screen-section */
+  
+  /* BORRAMOS EL SCROLL INTERNO Y DEJAMOS QUE SE VEA TODO: */
+  overflow: visible; 
+  
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.chart-header-container {
+  text-align: left;
+  margin-bottom: 25px;
+  width: 100%;
+  padding-left: 0;
+}
+
+.chart-section .section-title {
+  font-family: var(--main-font);
+  font-size: 2.6rem;
+  color: #000000;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+  padding-left: 128px; /* Margen izquierdo exacto respetado */
+}
+
+/* Subtítulo centrado: verde intenso con contorno negro */
+.interactive-subtitle-outline {
+  font-family: var(--main-font);
+  font-size: 2.2rem;
+  color: #00FF33;
+  -webkit-text-stroke: 10px #000000; /* Aumentamos el grosor del contorno */
+  paint-order: stroke fill;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.chart-interactive-wrapper-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.chart-interactive-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  gap: 30px; /* Espacio reducido para que las flechas se mantengan muy cerca de los extremos de las barras */
+}
+
+/* Busca esta clase y reemplázala o actualízala con el siguiente código */
+.chart-section .chart-bars-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 380px; /* Aumentamos la altura para darle aire arriba y abajo de las barras */
+  gap: 60px; /* Ajustamos la separación para que respiren bien dentro del recuadro */
+  margin: 0;
+  
+  /* Nuevos estilos para el recuadro negro */
+  border: 2px solid #000000; /* Borde negro sólido */
+  border-radius: 20px; /* Bordes redondeados idénticos a los del diseño en Figma */
+  padding: 30px 70px 20px 70px; /* Espaciado interno (Arriba, Derecha, Abajo, Izquierda) */
+  background-color: transparent; 
+  
+  /* Transición suave para el efecto de brillo */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Efecto hover: Agrega esta nueva regla justo debajo de la anterior */
+.chart-section .chart-bars-container:hover {
+  /* Genera un resplandor exterior verde neón (shadow verde) al pasar el mouse */
+  box-shadow: 0 0 25px 5px #00fc0d; 
+}
+
+/* Transición fluida para las barras y sus elementos */
+.chart-section .bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  justify-content: flex-end;
+  /* Hacemos que cualquier cambio en la altura y opacidad sea fluido (0.5 segundos) */
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chart-section .rounded-bar {
+  width: 100%;
+  background-color: #000000 !important;
+  border-radius: 12px 12px 12px 12px;
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Transición específica para la altura de la barra */
+}
+
+.chart-section .bar-percentage {
+  font-family: var(--main-font);
+  font-size: 1.6rem;
+  color: #000000;
+  margin-bottom: 8px;
+  font-weight: bold;
+  transition: opacity 0.3s ease; /* Suaviza el cambio de texto del porcentaje */
+}
+
+/* Hacemos que el contenedor muestre la manito al pasar el mouse */
+.chart-section .chart-bars-container {
+  cursor: pointer; 
+}
+
+/* Estado Incorrecto (Rojo) para gráficos 1, 2 y 4 */
+.chart-section .chart-bars-container.is-wrong {
+  box-shadow: 0 0 25px 5px #ff0000 !important;
+  border-color: #ff0000 !important; /* También pintamos el borde de rojo */
+}
+
+/* Estado Correcto (Verde intenso) para el gráfico 3 */
+.chart-section .chart-bars-container.is-correct {
+  box-shadow: 0 0 40px 10px #00fc0d !important; /* Un resplandor más grande y fuerte */
+  border-color: #00fc0d !important; 
+}
+
+/* Barras redondeadas arriba y abajo */
+.chart-section .rounded-bar {
+  width: 100%;
+  background-color: #000000 !important;
+  border-radius: 12px 12px 12px 12px;
+}
+
+/* Nos aseguramos de que el contenedor permita elementos flotantes absolutos adentro */
+.chart-section .chart-bars-container {
+  position: relative; 
+}
+
+/* Subtítulo superior oculto por defecto */
+.correct-answer-subtitle {
+  display: none; 
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  font-family: inherit; /* Hereda tu tipografía pixelada */
+}
+
+/* Texto flotante dentro del gráfico (Oculto por defecto) */
+.reveal-text {
+  display: none; 
+  position: absolute;
+  top: 40px;     /* Distancia desde arriba del recuadro negro */
+  left: 50px;    /* Distancia desde el borde izquierdo */
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-family: inherit;
+  text-align: left;
+  z-index: 10;
+}
+
+/* El número gigante en verde */
+.reveal-text .neon-green {
+  display: block;
+  font-size: 3.5rem;
+  color: #00fc0d;
+  margin-top: 10px;
+  text-shadow: 0 0 10px rgba(0, 252, 13, 0.5); /* Le da un ligero brillo */
+}
+
+/* Línea base inferior */
+.bar-baseline {
+  width: 100%;
+  height: 3px;
+  background-color: #000000;
+  margin-top: 2px;
+}
+
+.chart-section .bar-percentage {
+  font-family: var(--main-font);
+  font-size: 1.6rem;
+  color: #000000;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Flechas de navegación: Negras, sin verde y pegadas a los gráficos */
+.chart-nav-arrow-btn {
+  background: transparent;
+  border: none;
+  color: #000000 !important; /* Forzamos color negro absoluto */
+  -webkit-text-stroke: 0px transparent; /* Eliminamos cualquier contorno previo que pudiera teñirlas */
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.chart-nav-arrow-btn:hover {
+  transform: scale(1.15);
+}
+
+.chart-bottom-label {
+  text-align: center;
+  margin-top: 25px;
+  font-family: var(--main-font);
+  font-size: 1.7rem;
+  color: #000000;
+  line-height: 1.2;
+}
+
+/* RADAR (Sección 2) */
+.radar-section {
+  padding-top: 30px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.radar-text h2 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  font-weight: normal;
+  color: #000000;
+}
+
+/* RECUADRO NEGRO FLOTANTE SUPERIOR (Oculto por defecto, visible con hover) */
+.radar-top-textbox {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000;
+  padding: 14px 22px;
+  max-width: 700px;
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 10;
+  pointer-events: none;
+  text-align: left;
+  
+  /* Transición de aparición */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Se muestra cuando el radar está activo (mouse encima) */
+.radar-chart-container.is-active .radar-top-textbox {
+  opacity: 1;
+  visibility: visible;
+}
+
+.radar-top-title {
+  font-family: var(--main-font);
+  font-size: 2.0rem;
+  color: #ffffff;
+  line-height: 1.35;
+  font-weight: normal;
+  margin: 0;
+}
+
+.neon-green-text {
+  color: var(--accent-green);
+  font-weight: bold;
+}
+
+.text-green-highlight { color: var(--accent-green); }
+
+.radar-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 58vh;
+  margin-top: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.radar-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 900px;
+  max-height: 620px;
+  overflow: visible;
+  transform: translateY(20px);
+}
+
+.radar-grid-line { fill: none; stroke: #000000; stroke-width: 1.5; opacity: 0.6; }
+.radar-axis { stroke: #000000; stroke-width: 1; opacity: 0.25; }
+.radar-data-area { fill: #00ff66; fill-opacity: 0.55; stroke: #00cc52; stroke-width: 2.5; }
+
+.radar-label {
+  fill: #000000;
+  font-family: var(--main-font);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.radar-label.is-green { fill: #00b347 !important; }
+.radar-label-group { cursor: pointer; }
+
+/* OCULTAR TÍTULOS COMUNES AL HACER HOVER */
+.radar-default-labels {
+  transition: opacity 0.3s ease;
+}
+
+.radar-chart-container.is-active .radar-default-labels {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-bg-highlight {
+  fill: #000000;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.radar-chart-container.is-active .label-bg-highlight { opacity: 1 !important; }
+.radar-chart-container.is-active .radar-label.is-green { fill: var(--accent-green) !important; }
+
+/* INSIGNIAS Y PORCENTAJES */
+.radar-badges {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+.radar-section .fixed-source-display {
+  right: 128px;
+  background-color: #ffffff;
+  padding: 4px 30px;
+  border-radius: 4px;
+}
+
+.radar-badges.is-active,
+.radar-chart-container.is-active .radar-badges {
+  opacity: 1;
+  visibility: visible;
+}
+
+.badge-bg { fill: #ffffff; stroke: #000000; stroke-width: 1; rx: 4px; ry: 4px; }
+.badge-text {
+  fill: #000000 !important;
+  font-family: var(--main-font);
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.badge-text.is-green-text { fill: #00b347 !important; }
+
+/* PIXEL DIVIDER */
+.pixel-divider {
+  position: absolute; bottom: 0px; left: 0;
+  width: 100%; height: 120px; pointer-events: none; z-index: 1;
+}
+
+.sq { position: absolute; }
+.sq-black { background-color: #000000; }
+.sq-white { background-color: #ffffff; }
+
+.sq-l1 { width: 280px; height: 120px; bottom: 0; left: 0; }
+.sq-l2 { width: 140px; height: 120px; bottom: 0; left: 340px; }
+.sq-lw1 { width: 60px; height: 120px; bottom: 0; left: 280px; }
+.sq-r1 { width: 140px; height: 120px; bottom: 120px; right: 0; }
+.sq-r2 { width: 140px; height: 120px; bottom: 0; right: 140px; }
+.sq-r3 { width: 140px; height: 120px; bottom: 0; right: 0; }
+.sq-rw1 { width: 140px; height: 120px; bottom: 0; right: 0; }
+.sq-rw2 { width: 140px; height: 120px; bottom: 120px; right: 140px; }
+
+/* IMPACTO NEGATIVO (Sección 3) */
+.impact-title-container { grid-column: 1 / span 12; height: 100px; }
+.impact-title-container h2 {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.impact-description-container {
+  grid-column: 1 / span 4;
+  margin-top: 10px;
+}
+
+.impact-description {
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #ffffff;
+  max-width: 320px;
+}
+
+.impact-chart-wrapper {
+  grid-column: 5 / span 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  height: 55vh;
+}
+
+.impact-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.legend-item { display: flex; align-items: center; gap: 8px; }
+.legend-item.white { color: #ffffff; }
+.legend-item.green { color: var(--accent-green); }
+.plus-icon { font-weight: bold; font-size: 1.6rem; }
+
+.impact-bars-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.impact-year-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 340px;
+}
+
+.impact-columns {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+}
+
+.impact-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 110px;
+}
+
+@keyframes lineBlinkDark {
+  0%, 100% { opacity: 1; background-color: #ffffff; }
+  50% { opacity: 0.2; background-color: var(--accent-green); }
+}
+
+.impact-chart-wrapper .bar-line {
+  width: 100%;
+  height: 4px !important;
+  min-height: 4px !important;
+  background-color: #ffffff;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+  animation: lineBlinkDark 1.5s infinite ease-in-out;
+  cursor: pointer;
+}
+
+.impact-year {
+  font-size: 2.4rem;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.theme-dark .white-col .bar-box {
+  width: 100%;
+  background-image: radial-gradient(circle, #ffffff 2px, transparent 2px);
+  background-size: 8px 8px;
+}
+
+.theme-dark .green-col .bar-box {
+  width: 100%;
+  background-image: radial-gradient(circle, var(--accent-green) 2px, transparent 2px);
+  background-size: 8px 8px;
+}
+
+.theme-dark .white-col .bar-value { color: #ffffff; }
+.theme-dark .green-col .bar-value { color: var(--accent-green); }
+
+.box-h-7 { height: 50px !important; }
+.box-h-18 { height: 120px !important; }
+.box-h-30 { height: 200px !important; }
+
+/* CAMPAÑAS CRITICADAS (Sección 4) */
+.campaigns-section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.campaigns-title-container { width: 100%; }
+.campaigns-title-container h2 {
+  font-size: 2.8rem;
+  line-height: 1.15;
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.modal-img-container {
+  width: 100%;
+  max-width: 450px; /* Ajustá al ancho original de tu imagen */
+  height: 280px;    /* Ajustá a la altura original de tu imagen */
+  background-color: #000000;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-img-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.campaigns-cards-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  height: 55vh;
+}
+
+.campaign-card {
+  flex: 1;
+  max-width: 280px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.card-img-box { 
+  width: 100%; 
+  height: 220px; 
+  overflow: hidden; 
+  background-color: #000000; 
+  flex-shrink: 0; 
+  cursor: pointer; 
+}
+
+.card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.card-img-box:hover .card-img { transform: scale(1.05); }
+
+.card-title-box {
+  background-color: #ffffff;
+  padding: 16px 14px;
+  min-height: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+.card-link {
+  color: #000000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-family: var(--main-font);
+  font-size: 1.15rem;
+  line-height: 1.25;
+  font-weight: normal;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.card-link:hover { color: #008833; }
+
+.campaign-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.campaign-modal-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.campaign-modal-box {
+  background-color: #ffffff;
+  color: #000000;
+  width: 90%;
+  max-width: 900px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-family: var(--main-font);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close-btn:hover { color: #008833; }
+
+.modal-content-grid {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.modal-img-container {
+  flex: 1;
+  max-width: 450px;
+  height: 320px;
+  background-color: #000000;
+}
+
+.modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-text-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: normal;
+  line-height: 1.15;
+  color: #00b347;
+}
+
+.modal-desc {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #333333;
+}
+
+/* SECCIÓN 5: Beneficio de las Empresas */
+.business-benefit-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+.benefit-title-container {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Ocupa todo el ancho disponible para igualarse con el título */
+}
+
+.benefit-title-container .section-title.wide-title {
+  font-size: 4.5rem;
+  transform: scaleY(1.20);
+  font-weight: normal;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  line-height: 0.8;
+  margin-bottom: 70px;
+}
+
+.first-line,
+.second-line {
+  width: 100%;
+  text-align: justify;
+  text-align-last: justify;
+  display: block;
+}
+
+.benefit-paragraph {
+  font-family: var(--main-font);
+  font-size: 2.1rem;
+  line-height: 1.5;
+  color: #ffffff;
+  width: 100%;
+  text-align: left; /* Alineado a la izquierda perfecto con los márgenes del título */
+  letter-spacing: 0.02em;
+}
+
+.benefit-paragraph .highlight-green {
+  color: var(--accent-green);
+  font-size: 1.5em;
+}
+
+.mcdonalds-data-section {
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-curtain-divider {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; 
+}
+
+.sq-c1 { width: 350px; height: 180px; top: 0; left: 0; }
+.sq-c2 { width: 300px; height: 220px; top: 0; right: 10%; }
+.sq-c3 { width: 450px; height: 200px; bottom: 0; left: 15%; }
+.sq-c4 { width: 280px; height: 250px; bottom: 0; right: 0; }
+
+.mcdonalds-content {
+  z-index: 5;
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 40px;
+}
+
+.data-list {
+  list-style: none;
+  font-size: 2.2rem;
+  line-height: 1.8;
+  font-weight: normal;
+}
+
+.comparison-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.comparison-text-container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 15px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.comparison-text-container .section-title.text-small {
+  font-family: var(--main-font);
+  font-size: 5.25rem;
+  line-height: 0.8;
+  font-weight: normal;
+  letter-spacing: 2px;
+  word-spacing: 6px;
+  text-align: left;
+  text-align-last: left;
+  max-width: 100%;
+  margin: 0;
+}
+
+.comparison-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 52vh;
+  width: 100%;
+}
+
+.comparison-img {
+  width: 100%;
+  max-width: 1050px;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.main-footer {
+  position: relative; 
+  width: 100%;
+  height: 32vh;
+  overflow: hidden;
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-end;
+  background-color: #000;
+}
+
+.footer-bg { 
+  width: 100%; 
+  height: 100%;
+  position: relative;
+  line-height: 0; 
+  font-size: 0; 
+}
+
+.footer-img { 
+  width: 100%; 
+  height: 100%; 
+  display: block; 
+  object-fit: cover;
+  object-position: center 70%;
+  background-color: #000; 
+}
+
+.footer-instagram-link {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+}
+
+.footer-ig-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.footer-ig-text {
+  font-family: var(--main-font);
+  font-size: 2.5rem;
+  color: #000000;
+  transition: color 0.2s ease;
+}
+
+.footer-instagram-link:hover .footer-ig-text {
+  color: #00b347;
+}
+
+/* ===================================================
+   SECCIÓN 3: Crecimiento del impacto negativo
+   =================================================== */
+.negative-impact-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Título de la sección */
+.negative-impact-section .impact-title-container {
+  grid-column: 1 / span 12;
+  margin-bottom: 20px;
+}
+
+.negative-impact-section .impact-title-container .section-title {
+  font-size: 2.8rem;
+  line-height: 1.1;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.text-green-highlight {
+  color: #15ff00;
+  font-size: 3.6rem;
+  font-weight: bold;
+}
+
+/* Texto de la izquierda */
+.negative-impact-section .impact-description-container {
+  grid-column: 1 / span 4;
+  display: flex;
+  align-items: center;
+}
+
+.impact-description {
+  font-family: var(--main-font);
+  font-size: 1.25rem;
+  line-height: 1.0;
+  color: #ffffff;
+}
+
+/* Contenedor del Gráfico (Desplazado a la izquierda) */
+.negative-impact-section .impact-chart-wrapper {
+  grid-column: 5 / span 8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.chart-relative-box {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  left: -150px;  /* <--- Controla Izquierda (-) / Derecha (+) */
+  top: -70px;
+}
+
+/* Imagen Base sin el signo de pregunta */
+.rings-bg-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Signo de pregunta posicionado exacto y con el contorno de Figma */
+/* Signo de pregunta un poco más chico, fijo y con titileo solo en la luz exterior */
+.neon-question-mark {
+  position: absolute;
+  bottom: 12%; /* Un poco más arriba para alinearlo perfecto entre los anillos */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--main-font), 'Ticketing', monospace;
+  font-size: 6.2rem; /* Tamaño un poco más chico */
+  font-weight: bold;
+  color: #15ff00; /* Verde neón fijo */
+  line-height: 1;
+  pointer-events: none;
+
+  /* Borde negro grueso y sólido fijo */
+  -webkit-text-stroke: 16px #000000;
+  paint-order: stroke fill;
+
+  /* El signo en sí se mantiene 100% visible (sin cambiar opacidad) */
+  opacity: 1;
+
+  /* Animación rápida que solo altera la luz verde alrededor */
+  animation: titilarSoloLuz 0.5s infinite alternate ease-in-out;
+}
+
+/* Animación que hace pulsar únicamente el resplandor de luz verde */
+@keyframes titilarSoloLuz {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(21, 255, 0, 0.2));
+  }
+  100% {
+    filter: drop-shadow(0 0 22px #15ff00) drop-shadow(0 0 35px rgba(21, 255, 0, 0.8));
+  }
+}
+
+/* ===================================================
+   Control independiente para grafico2.png
+   =================================================== */
+.chart-relative-box.grafico2-mode {
+  position: relative;
+  width: 100%;
+  max-width: 650px; /* Aumentamos el contenedor porque la imagen es más ancha */
+  left: -250px;     /* Lo empujamos más a la izquierda para centrar los anillos visualmente */
+  top: -70px;       
+}
+
+/* Opciones interactivas de porcentaje ajustadas a este nuevo tamaño */
+.chart-relative-box.grafico2-mode .percentage-options-container {
+  position: absolute;
+  bottom: 40px;     /* Lo subimos un poco proporcional al nuevo tamaño */
+  left: 0; 
+  width: 420px;     /* Se ensancha para cubrir el nuevo tamaño del bloque negro */
+  display: flex;
+  justify-content: center; 
+  gap: 30px;        /* Más separación para que respiren los números */
+  z-index: 10;
+}
+
+.pct-btn {
+  font-family: var(--main-font);
+  font-size: 3.2rem; /* Tipografía un poco más grande para acompañar el nuevo tamaño */
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.pct-btn:hover {
+  transform: scale(1.1);
+}
+
+.pct-btn.is-wrong {
+  color: #ff0000 !important;
+}
+
+.pct-btn.is-correct {
+  color: #00fc0d !important;
+}
+
+/* ===================================================
+   Recuadro negro inferior para la Sección 3
+   =================================================== */
+/* Estado base para Gráfico 2 (se mantiene donde está) */
+.section3-bottom-box {
+  position: absolute;
+  top: 98%;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  padding: 15px 10px;
+  text-align: center;
+  z-index: 20;
+}
+
+/* Estado exclusivo para Gráfico 3 (Subir y mover a la derecha) */
+.chart-relative-box.grafico3-mode .section3-bottom-box {
+  top: 190px;                    /* Subir: achicá este valor para subirlo más */
+  left: 50%;
+  transform: translateX(-90%);  /* A la derecha: cambiá a -20% o 0% si querés moverlo más a la derecha */
+  width: 500px;
+  padding: 24px 20px;
+  background-color: #000000;
+  padding: 15px;
+  border-radius: 6px;
+  z-index: 50;
+}
+
+.section3-extra-text {
+  font-family: var(--main-font);
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+.percentage-options-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.pct-btn {
+  font-family: var(--main-font);
+  font-size: 3rem;
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.pct-btn:hover {
+  transform: scale(1.1);
+}
+
+.pct-btn.is-wrong {
+  color: #ff0000 !important;
+}
+
+.pct-btn.is-correct {
+  color: #00fc0d !important;
+}
+
+/* Estado exclusivo para Gráfico 4 (Ajustar posición vertical) */
+.chart-relative-box.grafico4-mode img,
+#section3-image.grafico4-mode {
+  transform: translateY(50px); /* Ajustá este valor (ej. 20px, 40px) para bajarlo lo que necesites */
+}
+
+/* Botón de flecha para reiniciar en la Sección 3 */
+.reset-arrow-btn {
+  position: absolute;
+  top: 140px;               /* Ajusta la altura para alinear con 2025-2026 */
+  left: -40px;               /* Posición a la izquierda del texto 2025-2026 */
+  background: transparent;  /* Sin fondo */
+  color: #00fc0d;           /* Flecha de color verde brillante */
+  border: none;
+  font-size: 2rem;          /* Tamaño del símbolo */
+  cursor: pointer;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.reset-arrow-btn:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px #00fc0d); /* Efecto de brillo al pasar el cursor */
+}
+
+/* Botón de flecha derecha (para avanzar a grafico4) */
+.next-arrow-btn {
+  position: absolute;
+  top: 155px;               /* Misma altura que la flecha izquierda */
+  right: -30px;             /* Posicionada a la derecha del gráfico */
+  background: transparent;
+  color: #00fc0d;           /* Verde brillante neón */
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.next-arrow-btn:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 5px #00fc0d);
+}
+
+/* Contenedor del botón de la rotonda abajo a la derecha */
+.global-reset-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* ==========================================
+   SECCIÓN FINAL: Un límite a la automatización
+   ========================================== */
+
+/* Forzar que el espacio entre la sección de manzanas y el límite sea negro y sin huecos */
+section + .limit-section,
+.limit-section {
+  margin-top: 0px !important; /* Elimina cualquier espacio blanco gigante previo */
+  background-color: #000000 !important;
+}
+
+/* Asegurar que el contenedor principal o wrapper que cruce por ahí no deje blanco */
+body {
+  background-color: #000000;
+}
+
+.limit-section {
+  background-color: #000000;
+  width: 100%;
+  /* Hacemos la sección mucho más alta para estirar el fondo negro */
+  min-height: 130vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  margin-bottom: 0px;
+  position: relative;
+  z-index: 2;
+  /* Espaciado interno superior muy alto y abajo también para expandirlo */
+  padding: 200px 100px; 
+  box-sizing: border-box;
+}
+
+.limit-content {
+  text-align: center;
+  max-width: 2000px; /* Hacemos el contenedor más ancho */
+  width: 100%;
+}
+
+.limit-title {
+  font-family: var(--main-font);
+  font-size: 4.5rem; /* Letras más grandes y anchas */
+  color: #ffffff;
+  line-height: 1.25;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+}
+
+.limit-title .neon-green-text {
+  color: var(--accent-green);
+}
+
+/* ==========================================
+   SECCIÓN FINAL: Conclusión / Cierre
+   ========================================== */
+.conclusion-section {
+  background-color: #000000;
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Respetamos la misma distancia prolija respecto a la sección anterior */
+  margin-top: 0px; 
+  margin-bottom: 100px;
+  position: relative;
+  z-index: 2;
+  padding: 60px 40px;
+  box-sizing: border-box;
+}
+
+.conclusion-content {
+  text-align: left;
+  max-width: 1050px;
+  width: 100%;
+}
+
+.conclusion-text {
+  font-family: var(--main-font);
+  font-size: 2.8rem;
+  color: #ffffff;
+  line-height: 1.5;
+  font-weight: normal;
+  letter-spacing: 0.01em;
+}
+
+.conclusion-text .neon-green-text {
+  color: var(--accent-green);
+}
+
+/* Tamaño de la imagen de la rotonda */
+.reset-icon-img {
+  width: 38px;  /* Ajustá este valor si la querés más grande o más chica */
+  height: auto;
+  display: block;
+}
+
+/* Efecto al pasar el cursor (zoom y leve brillo verde) */
+.global-reset-btn:hover {
+  transform: scale(1.15) rotate(-45deg);
+  filter: drop-shadow(0 0 6px #00fc0d);
+}
